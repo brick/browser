@@ -33,14 +33,14 @@ class Browser extends SearchContext
      *
      * @var \DOMDocument|null
      */
-    private $document = null;
+    private $document;
 
     /**
      * The last response that generated the current document (hence excluding AJAX responses).
      *
      * @var \Brick\Http\Response|null
      */
-    private $documentResponse = null;
+    private $documentResponse;
 
     /**
      * Class constructor.
