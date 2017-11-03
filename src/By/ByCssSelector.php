@@ -19,18 +19,16 @@ class ByCssSelector extends By
     /**
      * @param string $selector
      */
-    public function __construct($selector)
+    public function __construct(string $selector)
     {
         $converter = new CssSelectorConverter();
         $this->xPath = $converter->toXPath($selector, 'descendant::');
     }
 
     /**
-     * @param \DOMElement[] $elements
-     *
-     * @return \DOMElement[]
+     * {@inheritdoc}
      */
-    public function findElements(array $elements)
+    public function findElements(array $elements) : array
     {
         return By::xPath($this->xPath)->findElements($elements);
     }

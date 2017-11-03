@@ -17,16 +17,15 @@ class ById extends By
     /**
      * @param string $id
      */
-    public function __construct($id)
+    public function __construct(string $id)
     {
         $this->xPath = sprintf('descendant::*[@id = "%s"]', $id);
     }
 
     /**
-     * @param \DOMElement[] $elements
-     * @return \DOMElement[]
+     * {@inheritdoc}
      */
-    public function findElements(array $elements)
+    public function findElements(array $elements) : array
     {
         return By::xPath($this->xPath)->findElements($elements);
     }

@@ -13,7 +13,7 @@ class RadioButton extends ToggleButton
     /**
      * {@inheritdoc}
      */
-    public function check()
+    public function check() : void
     {
         $form = $this->getForm();
         if ($form) {

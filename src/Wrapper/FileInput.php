@@ -12,10 +12,12 @@ class FileInput extends FormControl
 {
     /**
      * @param Element $element
+     *
      * @return FileInput
+     *
      * @throws UnexpectedElementException
      */
-    public static function create(Element $element)
+    public static function create(Element $element) : FileInput
     {
         if (! $element->is('input')) {
             throw new UnexpectedElementException('Expected input element, got ' . $element->getTagName());
@@ -31,9 +33,10 @@ class FileInput extends FormControl
 
     /**
      * @param string $path
+     *
      * @return void
      */
-    public function selectFile($path)
+    public function selectFile(string $path) : void
     {
         $this->element->setAttribute('value', $path);
     }

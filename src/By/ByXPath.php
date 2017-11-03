@@ -17,16 +17,15 @@ class ByXPath extends By
     /**
      * @param string $xPath
      */
-    public function __construct($xPath)
+    public function __construct(string $xPath)
     {
         $this->xPath = $xPath;
     }
 
     /**
-     * @param \DOMElement[] $elements
-     * @return \DOMElement[]
+     * {@inheritdoc}
      */
-    public function findElements(array $elements)
+    public function findElements(array $elements) : array
     {
         $result = [];
 

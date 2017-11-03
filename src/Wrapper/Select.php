@@ -14,10 +14,12 @@ class Select extends FormControl
 {
     /**
      * @param Element $element
+     *
      * @return Select
+     *
      * @throws UnexpectedElementException
      */
-    public static function create(Element $element)
+    public static function create(Element $element) : Select
     {
         if (! $element->is('select')) {
             throw new UnexpectedElementException('Expected select element, got ' . $element->getTagName());
@@ -27,9 +29,9 @@ class Select extends FormControl
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
-    public function isMultiple()
+    public function isMultiple() : bool
     {
         return $this->element->hasAttribute('multiple');
     }
@@ -41,7 +43,7 @@ class Select extends FormControl
      *
      * @return void
      */
-    public function selectByIndex($index)
+    public function selectByIndex(int $index) : void
     {
         $option = $this->findByIndex($index);
         if ($option) {
@@ -56,7 +58,7 @@ class Select extends FormControl
      *
      * @return void
      */
-    public function selectByValue($value)
+    public function selectByValue(string $value) : void
     {
         foreach ($this->findByValue($value) as $option) {
             $this->selectOption($option);
@@ -70,7 +72,7 @@ class Select extends FormControl
      *
      * @return void
      */
-    public function selectByVisibleText($text)
+    public function selectByVisibleText(string $text) : void
     {
         foreach ($this->findByVisibleText($text) as $option) {
             $this->selectOption($option);
@@ -84,7 +86,7 @@ class Select extends FormControl
      *
      * @return void
      */
-    public function deselectByIndex($index)
+    public function deselectByIndex(int $index) : void
     {
         $option = $this->findByIndex($index);
         if ($option) {
@@ -99,7 +101,7 @@ class Select extends FormControl
      *
      * @return void
      */
-    public function deselectByValue($value)
+    public function deselectByValue(string $value) : void
     {
         foreach ($this->findByValue($value) as $option) {
             $this->deselectOption($option);
@@ -113,7 +115,7 @@ class Select extends FormControl
      *
      * @return void
      */
-    public function deselectByVisibleText($text)
+    public function deselectByVisibleText(string $text) : void
     {
         foreach ($this->findByVisibleText($text) as $option) {
             $this->deselectOption($option);
@@ -125,7 +127,7 @@ class Select extends FormControl
      *
      * @return void
      */
-    public function deselectAll()
+    public function deselectAll() : void
     {
         foreach ($this->getOptions() as $option) {
             $this->deselectOption($option);
@@ -133,9 +135,9 @@ class Select extends FormControl
     }
 
     /**
-     * @return integer
+     * @return int
      */
-    private function getDisplaySize()
+    private function getDisplaySize() : int
     {
         $size = $this->element->getAttribute('size');
 
@@ -147,7 +149,7 @@ class Select extends FormControl
      *
      * @return Element[]
      */
-    public function getAllSelectedOptions()
+    public function getAllSelectedOptions() : array
     {
         $options = $this->filterOptions(function(Element $option) {
             return $option->hasAttribute('selected') && ! $option->hasAttribute('disabled');
@@ -184,7 +186,7 @@ class Select extends FormControl
      *
      * @throws \Brick\Browser\Exception\NoSuchElementException
      */
-    public function getFirstSelectedOption()
+    public function getFirstSelectedOption() : Element
     {
         $options = $this->getAllSelectedOptions();
 
@@ -202,7 +204,7 @@ class Select extends FormControl
      *
      * @return Element|null
      */
-    private function findByIndex($index)
+    private function findByIndex(int $index) : ?Element
     {
         $options = $this->getOptions();
 
@@ -216,7 +218,7 @@ class Select extends FormControl
      *
      * @return Element[]
      */
-    private function findByValue($value)
+    private function findByValue(string $value) : array
     {
         return $this->filterOptions(function(Element $option) use ($value) {
             return $option->getAttribute('value') == $value;
@@ -230,7 +232,7 @@ class Select extends FormControl
      *
      * @return Element[]
      */
-    private function findByVisibleText($text)
+    private function findByVisibleText(string $text) : array
     {
         return $this->filterOptions(function(Element $option) use ($text) {
             return $option->getText() == $text;
@@ -242,7 +244,7 @@ class Select extends FormControl
      *
      * @return Element[]
      */
-    public function getOptions()
+    public function getOptions() : array
     {
         return $this->element->find(By::tagName('option'))->all();
     }
@@ -254,7 +256,7 @@ class Select extends FormControl
      *
      * @return Element[]
      */
-    private function filterOptions(\Closure $filter)
+    private function filterOptions(\Closure $filter) : array
     {
         return array_values(array_filter($this->getOptions(), $filter));
     }
@@ -264,7 +266,7 @@ class Select extends FormControl
      *
      * @return void
      */
-    private function selectOption(Element $element)
+    private function selectOption(Element $element) : void
     {
         if (! $this->isMultiple()) {
             foreach ($this->getOptions() as $option) {
@@ -280,7 +282,7 @@ class Select extends FormControl
      *
      * @return void
      */
-    private function deselectOption(Element $element)
+    private function deselectOption(Element $element) : void
     {
         $element->removeAttribute('selected');
     }

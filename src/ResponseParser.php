@@ -28,7 +28,7 @@ class ResponseParser
      *
      * @return Response
      */
-    public function getResponse()
+    public function getResponse() : Response
     {
         return $this->response;
     }
@@ -36,7 +36,7 @@ class ResponseParser
     /**
      * @return string
      */
-    public function getText()
+    public function getText() : string
     {
         return (string) $this->response->getBody();
     }
@@ -48,7 +48,7 @@ class ResponseParser
      *
      * @return \DOMDocument
      */
-    public function parseDocument()
+    public function parseDocument() : \DOMDocument
     {
         $pattern ='/(x|ht)ml(?:.*;charset=(\S+))?/i';
         $contentType = $this->response->getHeader('Content-Type');

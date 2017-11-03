@@ -12,10 +12,12 @@ abstract class ToggleButton extends FormControl
 {
     /**
      * @param Element $element
+     *
      * @return ToggleButton
+     *
      * @throws UnexpectedElementException
      */
-    public static function create(Element $element)
+    public static function create(Element $element) : ToggleButton
     {
         if (! $element->is('input')) {
             throw new UnexpectedElementException('Expected input element, got ' . $element->getTagName());
@@ -36,9 +38,9 @@ abstract class ToggleButton extends FormControl
     /**
      * Returns whether the control is currently checked.
      *
-     * @return boolean
+     * @return bool
      */
-    public function isChecked()
+    public function isChecked() : bool
     {
         return $this->element->hasAttribute('checked');
     }
@@ -48,7 +50,7 @@ abstract class ToggleButton extends FormControl
      *
      * @return string
      */
-    public function getValue()
+    public function getValue() : string
     {
         return $this->element->hasAttribute('value') ? $this->element->getAttribute('value') : 'on';
     }
@@ -58,7 +60,7 @@ abstract class ToggleButton extends FormControl
      *
      * @return void
      */
-    public function check()
+    public function check() : void
     {
         $this->element->setAttribute('checked', 'checked');
     }
@@ -68,7 +70,7 @@ abstract class ToggleButton extends FormControl
      *
      * @return void
      */
-    public function uncheck()
+    public function uncheck() : void
     {
         $this->element->removeAttribute('checked');
     }
@@ -78,7 +80,7 @@ abstract class ToggleButton extends FormControl
      *
      * @return void
      */
-    public function toggle()
+    public function toggle() : void
     {
         $this->element->hasAttribute('checked') ? $this->uncheck() : $this->check();
     }

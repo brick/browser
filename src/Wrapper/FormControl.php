@@ -17,7 +17,7 @@ abstract class FormControl extends AbstractWrapper
      * @throws UnexpectedElementException If the form attribute does not target a form.
      * @throws NoSuchElementException     IF the element does not belong to a form.
      */
-    public function getForm()
+    public function getForm() : Form
     {
         $element = $this->element->getDomElement();
         $document = $element->ownerDocument;
@@ -44,7 +44,7 @@ abstract class FormControl extends AbstractWrapper
      *
      * @return string
      */
-    public function getName()
+    public function getName() : string
     {
         return $this->element->getAttribute('name');
     }

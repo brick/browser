@@ -12,10 +12,12 @@ abstract class TextControl extends FormControl
 {
     /**
      * @param Element $element
+     *
      * @return TextControl
+     *
      * @throws UnexpectedElementException
      */
-    public static function create(Element $element)
+    public static function create(Element $element) : TextControl
     {
         switch (strtolower($element->getTagName())) {
             case 'input':
@@ -44,22 +46,23 @@ abstract class TextControl extends FormControl
      *
      * @return string
      */
-    abstract public function getValue();
+    abstract public function getValue() : string;
 
     /**
      * Writes some text in the text control.
      *
      * @param string $text
+     *
      * @return void
      */
-    abstract public function setValue($text);
+    abstract public function setValue(string $text) : void;
 
     /**
      * Clears the text control.
      *
      * @return void
      */
-    public function clear()
+    public function clear() : void
     {
         $this->setValue('');
     }

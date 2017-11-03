@@ -17,16 +17,15 @@ class ByName extends By
     /**
      * @param string $name
      */
-    public function __construct($name)
+    public function __construct(string $name)
     {
         $this->xPath = sprintf('descendant::*[@name = "%s"]', $name);
     }
 
     /**
-     * @param \DOMElement[] $elements
-     * @return \DOMElement[]
+     * {@inheritdoc}
      */
-    public function findElements(array $elements)
+    public function findElements(array $elements) : array
     {
         return By::xPath($this->xPath)->findElements($elements);
     }

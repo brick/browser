@@ -62,12 +62,12 @@ class Browser extends SearchContext
      * Executes the given request.
      *
      * @param Request $request
-     * @param boolean $storeHistory
-     * @param boolean $createDocument
+     * @param bool    $storeHistory
+     * @param bool    $createDocument
      *
      * @return Response
      */
-    private function request(Request $request, $storeHistory, $createDocument)
+    private function request(Request $request, bool $storeHistory, bool $createDocument) : Response
     {
         $requestResponse = $this->httpClient->rawRequest($request);
 
@@ -94,7 +94,7 @@ class Browser extends SearchContext
      *
      * @throws Exception\BrowserException
      */
-    public function getLastResponse()
+    public function getLastResponse() : Response
     {
         if ($this->documentResponse === null) {
             throw new Exception\BrowserException('No response has been received yet');
@@ -108,7 +108,7 @@ class Browser extends SearchContext
      *
      * @return string
      */
-    public function getUrl()
+    public function getUrl() : string
     {
         return $this->history->current()->getUrl();
     }
@@ -116,7 +116,7 @@ class Browser extends SearchContext
     /**
      * @return string
      */
-    public function getContent()
+    public function getContent() : string
     {
         return (string) $this->getLastResponse()->getBody();
     }
@@ -124,9 +124,9 @@ class Browser extends SearchContext
     /**
      * @param string $url
      *
-     * @return static
+     * @return Browser
      */
-    public function open($url)
+    public function open(string $url) : Browser
     {
         $request = $this->httpClient->createRequest('GET', $url);
 
@@ -143,13 +143,13 @@ class Browser extends SearchContext
      *
      * @param Target $target
      *
-     * @return static
+     * @return Browser
      *
      * @throws \InvalidArgumentException                If the argument is not a supported object.
      * @throws Exception\UnexpectedElementException     If the element is not clickable.
      * @throws Exception\StaleElementReferenceException If the element does not belong to the current page.
      */
-    public function click(Target $target)
+    public function click(Target $target) : Browser
     {
         $element = $target->getTargetElement($this);
 
@@ -177,12 +177,12 @@ class Browser extends SearchContext
      *
      * @param Target $target
      *
-     * @return static
+     * @return Browser
      *
      * @throws Exception\BrowserException
      * @throws Exception\StaleElementReferenceException If the element does not belong to the current page.
      */
-    public function submit(Target $target)
+    public function submit(Target $target) : Browser
     {
         $element = $target->getTargetElement($this);
 
@@ -206,9 +206,9 @@ class Browser extends SearchContext
     /**
      * @param Wrapper\Form $form
      *
-     * @return static
+     * @return Browser
      */
-    private function submitForm(Wrapper\Form $form)
+    private function submitForm(Wrapper\Form $form) : Browser
     {
         $url = $this->httpClient->getAbsoluteUrl($form->getAction());
 
@@ -234,11 +234,11 @@ class Browser extends SearchContext
     /**
      * Goes one step back in history.
      *
-     * @return static
+     * @return Browser
      *
      * @throws \LogicException If the history is empty, or already on the first page.
      */
-    public function back()
+    public function back() : Browser
     {
         $request = $this->history->back();
 
@@ -250,11 +250,11 @@ class Browser extends SearchContext
     /**
      * Goes one step forward in history.
      *
-     * @return static
+     * @return Browser
      *
      * @throws \LogicException If the history is empty, or already on the last page.
      */
-    public function forward()
+    public function forward() : Browser
     {
         $request = $this->history->forward();
 
@@ -266,11 +266,11 @@ class Browser extends SearchContext
     /**
      * Reloads the current page.
      *
-     * @return static
+     * @return Browser
      *
      * @throws \LogicException If the history is empty.
      */
-    public function reload()
+    public function reload() : Browser
     {
         $request = $this->history->current();
 
@@ -294,7 +294,7 @@ class Browser extends SearchContext
      *
      * @return ResponseParser
      */
-    public function ajax($method, $url, $data = null, array $headers = [])
+    public function ajax(string $method, string $url, $data = null, array $headers = []) : ResponseParser
     {
         if (is_array($data) || is_object($data)) {
             $data = http_build_query($data);
@@ -322,7 +322,7 @@ class Browser extends SearchContext
      *
      * @return string
      */
-    private function mergeQueryParameters($url, $data)
+    private function mergeQueryParameters(string $url, string $data) : string
     {
         if (strpos($url, '?') === false) {
             return $url . '?' . $data;
@@ -337,9 +337,10 @@ class Browser extends SearchContext
 
     /**
      * @param string $uri
+     *
      * @return string
      */
-    private function removeQueryString($uri)
+    private function removeQueryString(string $uri) : string
     {
         $pos = strpos($uri, '?');
 
@@ -349,7 +350,7 @@ class Browser extends SearchContext
     /**
      * {@inheritdoc}
      */
-    protected function getElements()
+    protected function getElements() : array
     {
         if ($this->document === null) {
             throw Exception\BrowserException::noDocumentLoaded();

@@ -37,7 +37,7 @@ class ElementList extends SearchContext implements Target, \Countable, \Iterator
      * @throws Exception\NoSuchElementException   If the list is empty.
      * @throws Exception\TooManyElementsException If the list contains more than one element.
      */
-    public function one()
+    public function one() : Element
     {
         if ($this->count() > 1) {
             throw Exception\TooManyElementsException::expectedOne($this->count());
@@ -51,7 +51,7 @@ class ElementList extends SearchContext implements Target, \Countable, \Iterator
      *
      * @return Element[]
      */
-    public function all()
+    public function all() : array
     {
         return $this->elements;
     }
@@ -65,7 +65,7 @@ class ElementList extends SearchContext implements Target, \Countable, \Iterator
      *
      * @throws Exception\NoSuchElementException If the index does not exist.
      */
-    public function get($index)
+    public function get(int $index) : Element
     {
         if (isset($this->elements[$index])) {
             return $this->elements[$index];
@@ -81,7 +81,7 @@ class ElementList extends SearchContext implements Target, \Countable, \Iterator
      *
      * @throws Exception\NoSuchElementException If the list is empty.
      */
-    public function first()
+    public function first() : Element
     {
         if ($this->count() == 0) {
             throw Exception\NoSuchElementException::emptyList();
@@ -97,15 +97,15 @@ class ElementList extends SearchContext implements Target, \Countable, \Iterator
      *
      * @throws Exception\NoSuchElementException If the list is empty.
      */
-    public function last()
+    public function last() : Element
     {
         return $this->elements[$this->count() - 1];
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
-    public function isEmpty()
+    public function isEmpty() : bool
     {
         return $this->count() == 0;
     }
@@ -113,7 +113,7 @@ class ElementList extends SearchContext implements Target, \Countable, \Iterator
     /**
      * {@inheritdoc}
      */
-    public function count()
+    public function count() : int
     {
         return count($this->elements);
     }
@@ -121,7 +121,7 @@ class ElementList extends SearchContext implements Target, \Countable, \Iterator
     /**
      * {@inheritdoc}
      */
-    public function getIterator()
+    public function getIterator() : \Traversable
     {
         return new \ArrayIterator($this->elements);
     }
@@ -129,7 +129,7 @@ class ElementList extends SearchContext implements Target, \Countable, \Iterator
     /**
      * {@inheritdoc}
      */
-    protected function getElements()
+    protected function getElements() : array
     {
         return $this->domElements;
     }
@@ -137,7 +137,7 @@ class ElementList extends SearchContext implements Target, \Countable, \Iterator
     /**
      * {@inheritdoc}
      */
-    public function getTargetElement(Browser $browser)
+    public function getTargetElement(Browser $browser) : Element
     {
         return $this->one();
     }

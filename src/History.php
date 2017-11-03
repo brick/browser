@@ -15,7 +15,7 @@ class History
     private $requests = [];
 
     /**
-     * @var integer
+     * @var int
      */
     private $position = -1;
 
@@ -24,25 +24,26 @@ class History
      *
      * @return void
      */
-    public function clear()
+    public function clear() : void
     {
         $this->requests = [];
         $this->position = -1;
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
-    public function isEmpty()
+    public function isEmpty() : bool
     {
         return $this->position == -1;
     }
 
     /**
-     * @param \Brick\Http\Request $request
+     * @param Request $request
+     *
      * @return void
      */
-    public function add(Request $request)
+    public function add(Request $request) : void
     {
         $this->requests = array_slice($this->requests, 0, $this->position + 1);
         $this->requests[] = $request;
@@ -50,10 +51,11 @@ class History
     }
 
     /**
-     * @return \Brick\Http\Request
+     * @return Request
+     *
      * @throws \LogicException
      */
-    public function back()
+    public function back() : Request
     {
         if ($this->position == -1) {
             throw new \LogicException('Cannot move back: the history is empty.');
@@ -66,10 +68,11 @@ class History
     }
 
     /**
-     * @return \Brick\Http\Request
+     * @return Request
+     *
      * @throws \LogicException
      */
-    public function forward()
+    public function forward() : Request
     {
         if ($this->position == -1) {
             throw new \LogicException('Cannot move forward: the history is empty.');
@@ -82,10 +85,11 @@ class History
     }
 
     /**
-     * @return \Brick\Http\Request
+     * @return Request
+     *
      * @throws \LogicException
      */
-    public function current()
+    public function current() : Request
     {
         if ($this->position == -1) {
             throw new \LogicException('The history is empty.');

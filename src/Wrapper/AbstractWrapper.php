@@ -29,7 +29,7 @@ abstract class AbstractWrapper
     /**
      * @return Element
      */
-    public function getWrappedElement()
+    public function getWrappedElement() : Element
     {
         return $this->element;
     }

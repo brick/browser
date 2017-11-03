@@ -6,9 +6,10 @@ class TooManyElementsException extends BrowserException
 {
     /**
      * @param int $count
+     *
      * @return TooManyElementsException
      */
-    public static function expectedOne($count)
+    public static function expectedOne(int $count) : TooManyElementsException
     {
         return new self(sprintf('Expected 1 element, found %d.', $count));
     }

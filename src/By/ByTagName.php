@@ -17,16 +17,15 @@ class ByTagName extends By
     /**
      * @param string $tagName
      */
-    public function __construct($tagName)
+    public function __construct(string $tagName)
     {
         $this->xPath = 'descendant::' . $tagName;
     }
 
     /**
-     * @param \DOMElement[] $elements
-     * @return \DOMElement[]
+     * {@inheritdoc}
      */
-    public function findElements(array $elements)
+    public function findElements(array $elements) : array
     {
        return By::xPath($this->xPath)->findElements($elements);
     }

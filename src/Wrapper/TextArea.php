@@ -10,7 +10,7 @@ class TextArea extends TextControl
     /**
      * {@inheritdoc}
      */
-    public function getValue()
+    public function getValue() : string
     {
         return $this->element->getDomElement()->nodeValue;
     }
@@ -18,7 +18,7 @@ class TextArea extends TextControl
     /**
      * {@inheritdoc}
      */
-    public function setValue($text)
+    public function setValue(string $text) : void
     {
         $this->element->getDomElement()->nodeValue = $text;
     }

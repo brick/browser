@@ -17,7 +17,7 @@ class ByClassName extends By
     /**
      * @param string $className
      */
-    public function __construct($className)
+    public function __construct(string $className)
     {
         $this->xPath = sprintf(
             'descendant::*[contains(concat(" ", normalize-space(@class), " "), " %s ")]',
@@ -26,10 +26,9 @@ class ByClassName extends By
     }
 
     /**
-     * @param \DOMElement[] $elements
-     * @return \DOMElement[]
+     * {@inheritdoc}
      */
-    public function findElements(array $elements)
+    public function findElements(array $elements) : array
     {
         return By::xPath($this->xPath)->findElements($elements);
     }

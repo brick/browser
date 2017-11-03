@@ -25,7 +25,7 @@ class Element extends SearchContext implements Target
      *
      * @return \DOMElement
      */
-    public function getDomElement()
+    public function getDomElement() : \DOMElement
     {
         return $this->domElement;
     }
@@ -33,7 +33,7 @@ class Element extends SearchContext implements Target
     /**
      * @return string
      */
-    public function getTagName()
+    public function getTagName() : string
     {
         return $this->domElement->tagName;
     }
@@ -42,9 +42,10 @@ class Element extends SearchContext implements Target
      * Returns whether the tag name of the element matches the given tag name.
      *
      * @param string $tagName
+     *
      * @return bool
      */
-    public function is($tagName)
+    public function is(string $tagName) : bool
     {
         return strtolower($this->domElement->tagName) == strtolower($tagName);
     }
@@ -52,9 +53,9 @@ class Element extends SearchContext implements Target
     /**
      * @param string $name
      *
-     * @return boolean
+     * @return bool
      */
-    public function hasAttribute($name)
+    public function hasAttribute(string $name) : bool
     {
         return $this->domElement->hasAttribute($name);
     }
@@ -64,7 +65,7 @@ class Element extends SearchContext implements Target
      *
      * @return string
      */
-    public function getAttribute($name)
+    public function getAttribute(string $name) : string
     {
         return $this->domElement->getAttribute($name);
     }
@@ -75,7 +76,7 @@ class Element extends SearchContext implements Target
      *
      * @return void
      */
-    public function setAttribute($name, $value)
+    public function setAttribute(string $name, string $value) : void
     {
         $this->domElement->setAttribute($name, $value);
     }
@@ -85,7 +86,7 @@ class Element extends SearchContext implements Target
      *
      * @return void
      */
-    public function removeAttribute($name)
+    public function removeAttribute(string $name) : void
     {
         $this->domElement->removeAttribute($name);
     }
@@ -93,7 +94,7 @@ class Element extends SearchContext implements Target
     /**
      * @return string
      */
-    public function getText()
+    public function getText() : string
     {
         return $this->domElement->nodeValue;
     }
@@ -102,10 +103,12 @@ class Element extends SearchContext implements Target
      * Returns the closest parent element matching the given tag name.
      *
      * @param string $tagName
+     *
      * @return Element
+     *
      * @throws Exception\NoSuchElementException
      */
-    public function getParent($tagName)
+    public function getParent(string $tagName) : Element
     {
         $tagName = strtolower($tagName);
         $element = $this->domElement;
@@ -124,9 +127,10 @@ class Element extends SearchContext implements Target
      * Wraps the element in a TextControl to give it specific functionality.
      *
      * @return Wrapper\TextControl
+     *
      * @throws Exception\UnexpectedElementException If the element is not a text input or a textarea.
      */
-    public function toTextControl()
+    public function toTextControl() : Wrapper\TextControl
     {
         return Wrapper\TextControl::create($this);
     }
@@ -135,9 +139,10 @@ class Element extends SearchContext implements Target
      * Wraps the element in a ToggleButton to give it specific functionality.
      *
      * @return Wrapper\ToggleButton
+     *
      * @throws Exception\UnexpectedElementException If the element is not a checkbox or a radiobutton.
      */
-    public function toToggleButton()
+    public function toToggleButton() : Wrapper\ToggleButton
     {
         return Wrapper\ToggleButton::create($this);
     }
@@ -146,9 +151,10 @@ class Element extends SearchContext implements Target
      * Wraps the element in a Select to give it specific functionality.
      *
      * @return Wrapper\Select
+     *
      * @throws Exception\UnexpectedElementException If the element is not a select.
      */
-    public function toSelect()
+    public function toSelect() : Wrapper\Select
     {
         return Wrapper\Select::create($this);
     }
@@ -157,9 +163,10 @@ class Element extends SearchContext implements Target
      * Wraps the element in a FileInput to give it specific functionality.
      *
      * @return Wrapper\FileInput
+     *
      * @throws Exception\UnexpectedElementException If the element is not a file input.
      */
-    public function toFileInput()
+    public function toFileInput() : Wrapper\FileInput
     {
         return Wrapper\FileInput::create($this);
     }
@@ -167,7 +174,7 @@ class Element extends SearchContext implements Target
     /**
      * {@inheritdoc}
      */
-    protected function getElements()
+    protected function getElements() : array
     {
         return [$this->domElement];
     }
@@ -175,7 +182,7 @@ class Element extends SearchContext implements Target
     /**
      * {@inheritdoc}
      */
-    public function getTargetElement(Browser $browser)
+    public function getTargetElement(Browser $browser) : Element
     {
         return $this;
     }

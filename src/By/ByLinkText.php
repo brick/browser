@@ -17,16 +17,15 @@ class ByLinkText extends By
     /**
      * @param string $text
      */
-    public function __construct($text)
+    public function __construct(string $text)
     {
         $this->xPath = sprintf('descendant::a[normalize-space(.) = "%s"]', $text);
     }
 
     /**
-     * @param \DOMElement[] $elements
-     * @return \DOMElement[]
+     * {@inheritdoc}
      */
-    public function findElements(array $elements)
+    public function findElements(array $elements) : array
     {
         return By::xPath($this->xPath)->findElements($elements);
     }

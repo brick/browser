@@ -16,5 +16,5 @@ interface Target
      * @throws Exception\NoSuchElementException
      * @throws Exception\TooManyElementsException
      */
-    public function getTargetElement(Browser $browser);
+    public function getTargetElement(Browser $browser) : Element;
 }

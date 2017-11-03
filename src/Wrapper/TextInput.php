@@ -10,7 +10,7 @@ class TextInput extends TextControl
     /**
      * {@inheritdoc}
      */
-    public function getValue()
+    public function getValue() : string
     {
         return $this->element->getAttribute('value');
     }
@@ -18,7 +18,7 @@ class TextInput extends TextControl
     /**
      * {@inheritdoc}
      */
-    public function setValue($text)
+    public function setValue(string $text) : void
     {
         $this->element->setAttribute('value', $text);
     }

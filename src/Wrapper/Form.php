@@ -16,9 +16,10 @@ class Form extends AbstractWrapper
 {
     /**
      * @param Element $element
+     *
      * @return Form
      */
-    public static function create(Element $element)
+    public static function create(Element $element) : Form
     {
         return new Form($element);
     }
@@ -28,7 +29,7 @@ class Form extends AbstractWrapper
      *
      * @return string
      */
-    public function getAction()
+    public function getAction() : string
     {
         return $this->element->getAttribute('action');
     }
@@ -38,23 +39,23 @@ class Form extends AbstractWrapper
      *
      * @return string
      */
-    public function getMethod()
+    public function getMethod() : string
     {
         return $this->isPost() ? 'POST' : 'GET';
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
-    public function isGet()
+    public function isGet() : bool
     {
         return ! $this->isPost();
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
-    public function isPost()
+    public function isPost() : bool
     {
         return strtolower($this->element->getAttribute('method')) == 'post';
     }
@@ -62,7 +63,7 @@ class Form extends AbstractWrapper
     /**
      * @return string
      */
-    public function getRawData()
+    public function getRawData() : string
     {
         $values = [];
 
@@ -96,7 +97,7 @@ class Form extends AbstractWrapper
      *
      * @return \Brick\Browser\Wrapper\TextControl[]
      */
-    private function findTextControls()
+    private function findTextControls() : array
     {
         $textControls = [];
 
@@ -124,7 +125,7 @@ class Form extends AbstractWrapper
      *
      * @return \Brick\Browser\Wrapper\ToggleButton[]
      */
-    private function findToggleButton()
+    private function findToggleButton() : array
     {
         $toggleButtons = [];
 
@@ -145,7 +146,7 @@ class Form extends AbstractWrapper
      *
      * @return \Brick\Browser\Wrapper\Select[]
      */
-    private function findSelect()
+    private function findSelect() : array
     {
         $selects = [];
         $elements = $this->findBySelector('select[name]:not([disabled])');
@@ -159,9 +160,10 @@ class Form extends AbstractWrapper
 
     /**
      * @param string $selector
+     *
      * @return \Brick\Browser\Element[]
      */
-    private function findBySelector($selector)
+    private function findBySelector(string $selector) : array
     {
         return $this->element->find(By::cssSelector($selector))->all();
     }

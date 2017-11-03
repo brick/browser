@@ -27,10 +27,9 @@ class ByChain extends By
     }
 
     /**
-     * @param \DOMElement[] $elements
-     * @return \DOMElement[]
+     * {@inheritdoc}
      */
-    public function findElements(array $elements)
+    public function findElements(array $elements) : array
     {
         foreach ($this->bys as $by) {
             $elements = $by->findElements($elements);

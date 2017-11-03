@@ -10,7 +10,7 @@ class BrowserException extends \RuntimeException
     /**
      * @return BrowserException
      */
-    public static function noDocumentLoaded()
+    public static function noDocumentLoaded() : BrowserException
     {
         return new self('No document has been loaded.');
     }
