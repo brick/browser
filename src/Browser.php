@@ -152,13 +152,14 @@ class Browser extends SearchContext
     public function click(Target $target) : Browser
     {
         $element = $target->getTargetElement($this);
+        $tagName = $element->getTagName();
 
-        if ($element->getTagName() == 'a') {
+        if ($tagName == 'a') {
             // @todo Referer
             return $this->open($this->httpClient->getAbsoluteUrl($element->getAttribute('href')));
         }
 
-        if ($element->getTagName() == 'input' || $element->getTagName() == 'button') {
+        if ($tagName == 'input' || $tagName == 'button') {
             return $this->submit($element);
         }
 
