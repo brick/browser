@@ -3,7 +3,8 @@
 namespace Brick\Browser\By;
 
 use Brick\Browser\By;
-use Symfony\Component\CssSelector\CssSelector;
+
+use Symfony\Component\CssSelector\CssSelectorConverter;
 
 /**
  * Locates elements by CSS selector.
@@ -20,11 +21,13 @@ class ByCssSelector extends By
      */
     public function __construct($selector)
     {
-        $this->xPath = CssSelector::toXPath($selector, 'descendant::');
+        $converter = new CssSelectorConverter();
+        $this->xPath = $converter->toXPath($selector, 'descendant::');
     }
 
     /**
      * @param \DOMElement[] $elements
+     *
      * @return \DOMElement[]
      */
     public function findElements(array $elements)
