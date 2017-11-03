@@ -35,7 +35,7 @@ class History
      */
     public function isEmpty() : bool
     {
-        return $this->position == -1;
+        return $this->position === -1;
     }
 
     /**
@@ -57,10 +57,10 @@ class History
      */
     public function back() : Request
     {
-        if ($this->position == -1) {
+        if ($this->position === -1) {
             throw new \LogicException('Cannot move back: the history is empty.');
         }
-        if ($this->position == 0) {
+        if ($this->position === 0) {
             throw new \LogicException('Cannot move back: already on the first page.');
         }
 
@@ -74,10 +74,10 @@ class History
      */
     public function forward() : Request
     {
-        if ($this->position == -1) {
+        if ($this->position === -1) {
             throw new \LogicException('Cannot move forward: the history is empty.');
         }
-        if ($this->position == count($this->requests) - 1) {
+        if ($this->position === count($this->requests) - 1) {
             throw new \LogicException('Cannot move forward: already on the last page.');
         }
 
@@ -91,7 +91,7 @@ class History
      */
     public function current() : Request
     {
-        if ($this->position == -1) {
+        if ($this->position === -1) {
             throw new \LogicException('The history is empty.');
         }
 

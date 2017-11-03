@@ -155,7 +155,7 @@ class Select extends FormControl
             return $option->hasAttribute('selected') && ! $option->hasAttribute('disabled');
         });
 
-        if (count($options) != 0) {
+        if (count($options) !== 0) {
             return $options;
         }
 
@@ -166,12 +166,12 @@ class Select extends FormControl
          * of the first option element in the list of options in tree order that is not disabled,
          * if any, to true.
          */
-        if (! $this->element->hasAttribute('multiple') && $this->getDisplaySize() == 1) {
+        if (! $this->element->hasAttribute('multiple') && $this->getDisplaySize() === 1) {
             $options = $this->filterOptions(function(Element $option) {
                 return ! $option->hasAttribute('disabled');
             });
 
-            if (count($options) != 0) {
+            if (count($options) !== 0) {
                 return array_slice($options, 0, 1);
             }
         }
@@ -190,7 +190,7 @@ class Select extends FormControl
     {
         $options = $this->getAllSelectedOptions();
 
-        if (count($options) == 0) {
+        if (count($options) === 0) {
             throw new NoSuchElementException();
         }
 
@@ -221,7 +221,7 @@ class Select extends FormControl
     private function findByValue(string $value) : array
     {
         return $this->filterOptions(function(Element $option) use ($value) {
-            return $option->getAttribute('value') == $value;
+            return $option->getAttribute('value') === $value;
         });
     }
 
@@ -235,7 +235,7 @@ class Select extends FormControl
     private function findByVisibleText(string $text) : array
     {
         return $this->filterOptions(function(Element $option) use ($text) {
-            return $option->getText() == $text;
+            return $option->getText() === $text;
         });
     }
 

@@ -83,7 +83,7 @@ class ElementList extends SearchContext implements Target, \Countable, \Iterator
      */
     public function first() : Element
     {
-        if ($this->count() == 0) {
+        if ($this->count() === 0) {
             throw Exception\NoSuchElementException::emptyList();
         }
 
@@ -107,7 +107,7 @@ class ElementList extends SearchContext implements Target, \Countable, \Iterator
      */
     public function isEmpty() : bool
     {
-        return $this->count() == 0;
+        return $this->count() === 0;
     }
 
     /**

@@ -154,12 +154,12 @@ class Browser extends SearchContext
         $element = $target->getTargetElement($this);
         $tagName = $element->getTagName();
 
-        if ($tagName == 'a') {
+        if ($tagName === 'a') {
             // @todo Referer
             return $this->open($this->httpClient->getAbsoluteUrl($element->getAttribute('href')));
         }
 
-        if ($tagName == 'input' || $tagName == 'button') {
+        if ($tagName === 'input' || $tagName === 'button') {
             return $this->submit($element);
         }
 
@@ -301,11 +301,11 @@ class Browser extends SearchContext
             $data = http_build_query($data);
         }
 
-        if (strtoupper($method) == 'GET') {
+        if (strtoupper($method) === 'GET') {
             $url = $this->mergeQueryParameters($url, $data);
         }
 
-        if (strtoupper($method) == 'POST') {
+        if (strtoupper($method) === 'POST') {
             parse_str($data, $post);
         } else {
             $post = [];
@@ -329,7 +329,7 @@ class Browser extends SearchContext
             return $url . '?' . $data;
         }
 
-        if ($url[strlen($url) - 1] == '&') {
+        if ($url[strlen($url) - 1] === '&') {
             return $url . $data;
         }
 

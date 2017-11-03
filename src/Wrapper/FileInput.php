@@ -24,7 +24,7 @@ class FileInput extends FormControl
         }
 
         $type = strtolower($element->getAttribute('type'));
-        if ($type != 'file') {
+        if ($type !== 'file') {
             throw new UnexpectedElementException('Expected input type=file, got ' . $type);
         }
 

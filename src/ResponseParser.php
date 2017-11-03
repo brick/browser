@@ -52,7 +52,7 @@ class ResponseParser
     {
         $pattern ='/(x|ht)ml(?:.*;charset=(\S+))?/i';
         $contentType = $this->response->getHeader('Content-Type');
-        $isDocument = (preg_match($pattern, $contentType, $matches) == 1);
+        $isDocument = (preg_match($pattern, $contentType, $matches) === 1);
         $charset = (isset($matches[2]) ? $matches[2] : 'UTF-8');
 
         $useInternalErrors = libxml_use_internal_errors(true);
@@ -62,7 +62,7 @@ class ResponseParser
         $document->validateOnParse = true;
 
         if ($isDocument) {
-            $isXml = (strtolower($matches[1]) == 'x');
+            $isXml = (strtolower($matches[1]) === 'x');
 
             if ($isXml) {
                 $document->loadXML($this->getText());

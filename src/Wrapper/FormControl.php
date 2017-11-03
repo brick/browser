@@ -27,7 +27,7 @@ abstract class FormControl extends AbstractWrapper
             if (! $form) {
                 throw new NoSuchElementException('Element has a form attribute that targets an id that does not exist');
             }
-            if (strtolower($form->tagName) != 'form') {
+            if (strtolower($form->tagName) !== 'form') {
                 throw new UnexpectedElementException('Element has a form attribute that does not target a form');
             }
 

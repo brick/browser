@@ -57,7 +57,7 @@ class Form extends AbstractWrapper
      */
     public function isPost() : bool
     {
-        return strtolower($this->element->getAttribute('method')) == 'post';
+        return strtolower($this->element->getAttribute('method')) === 'post';
     }
 
     /**

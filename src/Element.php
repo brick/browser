@@ -47,7 +47,7 @@ class Element extends SearchContext implements Target
      */
     public function is(string $tagName) : bool
     {
-        return strtolower($this->domElement->tagName) == strtolower($tagName);
+        return strtolower($this->domElement->tagName) === strtolower($tagName);
     }
 
     /**
@@ -115,7 +115,7 @@ class Element extends SearchContext implements Target
 
         while ($element->parentNode) {
             $element = $element->parentNode;
-            if (strtolower($element->tagName) == $tagName) {
+            if (strtolower($element->tagName) === $tagName) {
                 return new Element($element);
             }
         }
