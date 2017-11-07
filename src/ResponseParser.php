@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Brick\Browser;
 
 use Brick\Http\Response;
-use Brick\Json\JsonDecoder;
+use Brick\Std\Json\JsonDecoder;
 
 /**
  * Wraps a Response and provides tools to process it.
@@ -86,7 +86,7 @@ class ResponseParser
      *
      * @return mixed
      *
-     * @throws \Brick\Json\JsonException
+     * @throws \Brick\Std\Json\JsonException
      */
     public function parseJson()
     {
@@ -94,7 +94,7 @@ class ResponseParser
 
         if (! $jsonDecoder) {
             $jsonDecoder = new JsonDecoder();
-            $jsonDecoder->decodeObjectsAsArrays(true);
+            $jsonDecoder->decodeObjectAsArray(true);
         }
 
         return $jsonDecoder->decode($this->getText());

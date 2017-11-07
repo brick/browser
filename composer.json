@@ -10,6 +10,7 @@
   "require": {
     "php": ">=7.1",
     "brick/http": "0.1.*",
+    "brick/std": "0.1.*",
     "symfony/css-selector": "3.*"
   },
   "require-dev": {
