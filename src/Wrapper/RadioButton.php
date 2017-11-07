@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Brick\Browser\Wrapper;
+
 use Brick\Browser\By;
 
 /**
