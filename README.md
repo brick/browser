@@ -27,7 +27,7 @@ Just define the following requirement in your `composer.json` file:
 ```json
 {
     "require": {
-        "brick/browser": "dev-master"
+        "brick/browser": "0.1.*"
     }
 }
 ```
