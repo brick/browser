@@ -194,16 +194,6 @@ class Browser extends SearchContext
         }
 
         return $this->submit($element->getParent('form'));
-
-        if ($element instanceof Wrapper\FormControl) {
-            if (! $form = $element->getForm()) {
-                throw new UnexpectedElementException('The element has no form and cannot be submitted');
-            }
-
-            return $this->submit($form);
-        }
-
-        throw new Exception\BrowserException('Cannot submit the given element');
     }
 
     /**
