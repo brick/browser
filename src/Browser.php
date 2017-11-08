@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Brick\Browser;
 
 use Brick\Browser\Exception\UnexpectedElementException;
-use Brick\Http\Client\Client;
-use Brick\Http\Listener\MessageListener;
+use Brick\Browser\Client\Client;
+use Brick\Browser\Listener\MessageListener;
 use Brick\Http\Request;
 use Brick\Http\Response;
-use Brick\Http\Server\RequestHandler;
+use Brick\Http\RequestHandler;
 
 /**
  * A simple browser.
@@ -19,7 +19,7 @@ class Browser extends SearchContext
     /**
      * The HttpClient to execute requests.
      *
-     * @var \Brick\Http\Client\Client
+     * @var \Brick\Browser\Client\Client
      */
     private $httpClient;
 
@@ -47,8 +47,8 @@ class Browser extends SearchContext
     /**
      * Class constructor.
      *
-     * @param \Brick\Http\Server\RequestHandler         $handler  A handler to serve the requests.
-     * @param \Brick\Http\Listener\MessageListener|null $listener An optional message listener to use.
+     * @param RequestHandler       $handler  A handler to serve the requests.
+     * @param MessageListener|null $listener An optional message listener to use.
      */
     public function __construct(RequestHandler $handler, MessageListener $listener = null)
     {
