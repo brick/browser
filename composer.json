@@ -19,7 +19,11 @@
   },
   "autoload": {
     "psr-4": {
-      "Brick\\Browser\\": "src/",
+      "Brick\\Browser\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
       "Brick\\Browser\\Tests\\": "tests/"
     }
   }
