@@ -21,15 +21,10 @@ If you don't need all the features of a real browser, this is a much faster alte
 Installation
 ------------
 
-This library is installable via [Composer](https://getcomposer.org/).
-Just define the following requirement in your `composer.json` file:
+This library is installable via [Composer](https://getcomposer.org/):
 
-```json
-{
-    "require": {
-        "brick/browser": "0.1.*"
-    }
-}
+```bash
+composer require brick/browser
 ```
 
 Requirements
