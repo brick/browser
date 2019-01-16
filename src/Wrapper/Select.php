@@ -153,7 +153,7 @@ class Select extends FormControl
      */
     public function getAllSelectedOptions() : array
     {
-        $options = $this->filterOptions(function(Element $option) {
+        $options = $this->filterOptions(static function(Element $option) {
             return $option->hasAttribute('selected') && ! $option->hasAttribute('disabled');
         });
 
@@ -169,7 +169,7 @@ class Select extends FormControl
          * if any, to true.
          */
         if (! $this->element->hasAttribute('multiple') && $this->getDisplaySize() === 1) {
-            $options = $this->filterOptions(function(Element $option) {
+            $options = $this->filterOptions(static function(Element $option) {
                 return ! $option->hasAttribute('disabled');
             });
 
@@ -222,7 +222,7 @@ class Select extends FormControl
      */
     private function findByValue(string $value) : array
     {
-        return $this->filterOptions(function(Element $option) use ($value) {
+        return $this->filterOptions(static function(Element $option) use ($value) {
             return $option->getAttribute('value') === $value;
         });
     }
@@ -236,7 +236,7 @@ class Select extends FormControl
      */
     private function findByVisibleText(string $text) : array
     {
-        return $this->filterOptions(function(Element $option) use ($text) {
+        return $this->filterOptions(static function(Element $option) use ($text) {
             return $option->getText() === $text;
         });
     }

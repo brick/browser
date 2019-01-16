@@ -62,11 +62,11 @@ class CookieStore
     {
         $this->deleteExpiredCookies();
 
-        $cookies = array_filter($this->cookies, function(ClientCookie $cookie) use ($origin) {
+        $cookies = array_filter($this->cookies, static function(ClientCookie $cookie) use ($origin) {
             return $cookie->matches($origin);
         });
 
-        usort($cookies, function(ClientCookie $a, ClientCookie $b) {
+        usort($cookies, static function(ClientCookie $a, ClientCookie $b) {
             return $a->compareTo($b);
         });
 
@@ -106,7 +106,7 @@ class CookieStore
     {
         $cookies = $this->get($origin);
 
-        $pairs = array_map(function(ClientCookie $cookie) {
+        $pairs = array_map(static function(ClientCookie $cookie) {
             return $cookie->toString();
         }, $cookies);
 
