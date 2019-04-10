@@ -46,17 +46,19 @@ class Browser extends SearchContext
     /**
      * Class constructor.
      *
-     * @param RequestHandler       $handler  A handler to serve the requests.
-     * @param MessageListener|null $listener An optional message listener to use.
+     * @param Client $httpClient   The HTTP client.
+     * @param bool   $setUserAgent Whether to set the User-Agent header. Defaults to true.
      */
-    public function __construct(RequestHandler $handler, MessageListener $listener = null)
+    public function __construct(Client $httpClient, bool $setUserAgent = true)
     {
-        $this->httpClient = new Client($handler, null, $listener);
-        $this->httpClient->setHeaders([
-            'User-Agent' => 'Brick/Browser'
-        ]);
-
+        $this->httpClient = $httpClient;
         $this->history = new History();
+
+        if ($setUserAgent) {
+            $httpClient->addHeaders([
+                'User-Agent' => 'Brick/Browser v0.2'
+            ]);
+        }
     }
 
     /**

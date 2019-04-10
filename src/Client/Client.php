@@ -232,6 +232,8 @@ class Client
     /**
      * Sets the headers to send with each request.
      *
+     * All existing headers will be replaced.
+     *
      * @param array $headers An associative array of headers.
      *
      * @return static This Client instance.
@@ -239,6 +241,22 @@ class Client
     public function setHeaders(array $headers) : Client
     {
         $this->headers = $headers;
+
+        return $this;
+    }
+
+    /**
+     * Adds headers to send with each request.
+     *
+     * Existing headers with the same name will be overwritten.
+     *
+     * @param array $headers An associative array of headers.
+     *
+     * @return static This Client instance.
+     */
+    public function addHeaders(array $headers) : Client
+    {
+        $this->headers = $headers + $this->headers;
 
         return $this;
     }

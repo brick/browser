@@ -4,6 +4,7 @@ namespace Brick\Browser\Tests;
 
 use Brick\Browser\Browser;
 use Brick\Browser\By;
+use Brick\Browser\Client\Client;
 use Brick\Browser\Tests\Mock\ApplicationMock;
 
 use PHPUnit\Framework\TestCase;
@@ -49,7 +50,7 @@ class BrowserTest extends TestCase
     public function testBrowser() : void
     {
         $application = new ApplicationMock();
-        $browser = new Browser($application);
+        $browser = new Browser(new Client($application));
 
         $browser->open('http://example.com/');
 
