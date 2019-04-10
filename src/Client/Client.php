@@ -232,7 +232,7 @@ class Client
     /**
      * Sets the headers to send with each request.
      *
-     * @param array $headers An associativate array of headers.
+     * @param array $headers An associative array of headers.
      *
      * @return static This Client instance.
      */
