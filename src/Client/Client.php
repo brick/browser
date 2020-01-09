@@ -71,7 +71,7 @@ class Client
      * @param CookieStore|null     $store    An optional cookie store to re-use.
      * @param MessageListener|null $listener An optional message listener.
      */
-    public function __construct(RequestHandler $handler, CookieStore $store = null, MessageListener $listener = null)
+    public function __construct(RequestHandler $handler, ?CookieStore $store = null, ?MessageListener $listener = null)
     {
         $this->requestHandler = $handler;
         $this->cookieStore = $store ?: new CookieStore();
