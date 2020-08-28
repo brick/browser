@@ -6,7 +6,7 @@ Brick\Browser
 A PHP browser implementation for automated testing.
 
 [![Build Status](https://secure.travis-ci.org/brick/browser.svg?branch=master)](http://travis-ci.org/brick/browser)
-[![Coverage Status](https://coveralls.io/repos/brick/browser/badge.svg?branch=master)](https://coveralls.io/r/brick/browser?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/brick/browser/badge.svg?branch=master)](https://coveralls.io/github/brick/browser?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/brick/browser/v/stable)](https://packagist.org/packages/brick/browser)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 
