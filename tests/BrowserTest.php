@@ -30,7 +30,7 @@ class BrowserTest extends TestCase
      */
     private function assertContents(string $contents, Browser $browser) : void
     {
-        $this->assertContains($contents, (string) $browser->getLastResponse()->getBody());
+        $this->assertStringContainsString($contents, (string) $browser->getLastResponse()->getBody());
     }
 
     /**
