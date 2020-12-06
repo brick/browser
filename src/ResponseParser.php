@@ -58,7 +58,10 @@ class ResponseParser
         $charset = (isset($matches[2]) ? $matches[2] : 'UTF-8');
 
         $useInternalErrors = libxml_use_internal_errors(true);
-        $disableEntityLoader = libxml_disable_entity_loader(true);
+
+        if (version_compare(PHP_VERSION, '8.0.0') < 0) {
+            $disableEntityLoader = libxml_disable_entity_loader(true);
+        }
 
         $document = new \DOMDocument('1.0', $charset);
         $document->validateOnParse = true;
@@ -74,7 +77,10 @@ class ResponseParser
         }
 
         libxml_use_internal_errors($useInternalErrors);
-        libxml_disable_entity_loader($disableEntityLoader);
+
+        if (version_compare(PHP_VERSION, '8.0.0') < 0) {
+            libxml_disable_entity_loader($disableEntityLoader);
+        }
 
         return $document;
     }
